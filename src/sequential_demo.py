@@ -17,7 +17,7 @@ def main() -> None:
 
     end_time = time.time()
     print("Sequential results:", results)
-    print(f"Sequential Results Benchmark: {end_time - start_time} seconds")
+    print(f"Sequential Results Benchmark: {end_time - start_time:.2f} seconds")
 
 if __name__ == "__main__":
     main()
