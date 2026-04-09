@@ -23,7 +23,7 @@ def main() -> None:
     print("Sequential I/O results:")
     for result in results:
         print(result)
-    print(f"Sequential I/O runtime: {runtime:.2f} seconds")
+    print(f"Sequential I/O benchmark: {runtime:.2f} seconds")
 
 
 if __name__ == "__main__":
