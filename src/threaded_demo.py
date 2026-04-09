@@ -1,28 +1,27 @@
 import time
 from concurrent.futures import ThreadPoolExecutor
-from prime_utils import count_primes_in_range
+from prime_utils import count_primes_in_range, RANGES
 
 
-RANGES = [
-    (100_000, 102_000),
-    (102_000, 104_000),
-    (104_000, 106_000),
-    (106_000, 108_000),
-]
+def run_threaded(ranges=None):
+    if ranges is None:
+        ranges = RANGES
 
-
-def main() -> None:
     start_time = time.time()
 
     with ThreadPoolExecutor() as executor:
-        results = list(
-            executor.map(lambda r: count_primes_in_range(*r), RANGES)
-        )
+        results = list(executor.map(lambda r: count_primes_in_range(*r), ranges))
 
     end_time = time.time()
+    runtime = end_time - start_time
 
+    return results, runtime
+
+
+def main() -> None:
+    results, runtime = run_threaded()
     print("Threaded results:", results)
-    print(f"Threaded runtime: {end_time - start_time:.2f} seconds")
+    print(f"Threaded runtime: {runtime:.2f} seconds")
 
 
 if __name__ == "__main__":
